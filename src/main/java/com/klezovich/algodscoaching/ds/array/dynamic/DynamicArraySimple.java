@@ -1,6 +1,12 @@
 package com.klezovich.algodscoaching.ds.array.dynamic;
 
-public class DynamicArraySimple {
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Objects;
+
+import static java.util.stream.Collectors.toList;
+
+public class DynamicArraySimple implements Iterable<Integer> {
 
     private Integer[] arr = new Integer[1];
     private int nextFreeElementPos =0;
@@ -21,20 +27,31 @@ public class DynamicArraySimple {
         return arr[idx];
     }
 
-    public void delete(int element) {
+    public long length() {
+        return arr.length;
+    }
 
+    public void delete(int element) {
+        int pos = find(element);
+        if(pos == -1) {
+            return;
+        }
+
+        arr[pos] = null;
+        for(int ii=pos; ii<nextFreeElementPos-1; ii++ ) {
+            arr[ii]=arr[ii+1];
+        }
     }
 
     public int find(int element) {
         int position =0;
-        return position;
-    }
+        for(int ii=0; ii<nextFreeElementPos; ii++) {
+            if(arr[ii] == element) {
+                return ii;
+            }
+        }
 
-
-
-    //package level visibility for testing
-    Integer[] getArray() {
-        return arr;
+        return -1;
     }
 
     private Integer[] getNewArray(int size) {
@@ -45,5 +62,12 @@ public class DynamicArraySimple {
         for(int ii=0; ii<origArr.length; ii++) {
             newArr[ii]=origArr[ii];
         }
+    }
+
+    @Override
+    public Iterator<Integer> iterator() {
+        return Arrays.stream(arr)
+                .filter(Objects::nonNull)
+                .collect(toList()).iterator();
     }
 }
