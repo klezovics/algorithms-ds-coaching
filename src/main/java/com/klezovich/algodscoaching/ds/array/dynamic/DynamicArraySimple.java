@@ -5,7 +5,7 @@ public class DynamicArraySimple {
     private Integer[] arr = new Integer[1];
     private int nextFreeElementPos =0;
 
-    public void add(int input) {
+    public void add(int element) {
         //Not enough free space to fit in existing
         if(nextFreeElementPos >= arr.length) {
             var newArray = getNewArray(2*arr.length);
@@ -13,9 +13,24 @@ public class DynamicArraySimple {
             arr = newArray;
         }
 
-        arr[nextFreeElementPos]=input;
+        arr[nextFreeElementPos]=element;
         nextFreeElementPos++;
     }
+
+    public Integer get(int idx) {
+        return arr[idx];
+    }
+
+    public void delete(int element) {
+
+    }
+
+    public int find(int element) {
+        int position =0;
+        return position;
+    }
+
+
 
     //package level visibility for testing
     Integer[] getArray() {
