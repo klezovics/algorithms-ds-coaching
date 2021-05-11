@@ -20,4 +20,15 @@ class DynamicArraySimpleTest {
         assertThat(innerArr, arrayContaining(3));
     }
 
+    @Test
+    void testCanAddNewElementAndResize() {
+        var da = new DynamicArraySimple();
+        da.add(3);
+        da.add(2);
+
+        var innerArr = da.getArray();
+        assertEquals(2, innerArr.length);
+        assertThat(innerArr, arrayContaining(3,2));
+    }
+
 }
