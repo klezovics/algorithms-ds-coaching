@@ -15,7 +15,7 @@ public class DynamicArraySimple implements Iterable<Integer> {
         //Not enough free space to fit in existing
         if(nextFreeElementPos >= arr.length) {
             var newArray = getNewArray(2*arr.length);
-            copyElements(arr, newArray);
+            copyElements(arr, newArray, arr.length-1);
             arr = newArray;
         }
 
@@ -41,6 +41,16 @@ public class DynamicArraySimple implements Iterable<Integer> {
         for(int ii=pos; ii<nextFreeElementPos-1; ii++ ) {
             arr[ii]=arr[ii+1];
         }
+
+        nextFreeElementPos--;
+
+        //Half of array is empty - make smaller
+        if((arr.length/2) >= nextFreeElementPos) {
+            var newArr = getNewArray((arr.length)/2);
+            copyElements(arr, newArr, nextFreeElementPos-1);
+            arr = newArr;
+            nextFreeElementPos=(arr.length/2);
+        }
     }
 
     public int find(int element) {
@@ -54,12 +64,17 @@ public class DynamicArraySimple implements Iterable<Integer> {
         return -1;
     }
 
+    //For testing
+    int getInnerArrayLength() {
+        return arr.length;
+    }
+
     private Integer[] getNewArray(int size) {
         return new Integer[size];
     }
 
-    private void copyElements(Integer[] origArr, Integer[] newArr) {
-        for(int ii=0; ii<origArr.length; ii++) {
+    private void copyElements(Integer[] origArr, Integer[] newArr, int maxIdxToCopy) {
+        for(int ii=0; ii<=maxIdxToCopy; ii++) {
             newArr[ii]=origArr[ii];
         }
     }

@@ -73,6 +73,14 @@ class DynamicArraySimpleTest {
         assertThat(da, not(hasItem(1)));
         assertEquals(2, da.get(0));
         assertEquals(3, da.get(1));
+        assertEquals(2, da.getInnerArrayLength());
     }
+
+    @Test
+    void testComplexScenario() {
+        //TODO: Implement me
+        //Add in numbers 1 to 10, verify everything at every step
+    }
+
 
 }
