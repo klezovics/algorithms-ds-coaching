@@ -1,4 +1,4 @@
-package com.klezovich.algodscoaching.patterns.bfs;
+package com.klezovich.algodscoaching.patterns.dfs;
 
 import com.klezovich.algodscoaching.patterns.dfs.TreePathSum;
 import com.klezovich.algodscoaching.patterns.tree.TreeMother;
