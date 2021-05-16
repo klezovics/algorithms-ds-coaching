@@ -1,10 +1,13 @@
 package com.klezovich.algodscoaching.freestyle.graph;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class GraphList {
 
+    @Getter
     private int size;
     private List<List<Integer>> adjancencyList;
 
@@ -19,6 +22,21 @@ public class GraphList {
     public void addEdge(int from, int to) {
         adjancencyList.get(from).add(to);
         adjancencyList.get(to).add(from);
+    }
+
+    public List<Integer> getNeighbours(int nodeNumber) {
+        return adjancencyList.get(nodeNumber);
+    }
+
+    public static GraphList get01234Graph() {
+        var graph = new GraphList(5);
+
+        graph.addEdge(0,1);
+        graph.addEdge(0,2);
+        graph.addEdge(1,3);
+        graph.addEdge(1,4);
+
+        return graph;
     }
 
     @Override
