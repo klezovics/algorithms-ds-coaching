@@ -17,6 +17,7 @@ public class GraphDfsWalker {
     void dfs(int nodeNumber) {
 
         //If a node was already visited - don't visit it again
+        //Prevents us from walking in cycles along a graph
         if(visited[nodeNumber]) {
             return;
         }
